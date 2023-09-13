@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PhotoGalleryApp</string>
+    <string name="header">Gallery</string>
+    <string name="pic1">The Eiffel Tower</string>
+    <string name="pic2">The Lotus Temple</string>
+    <string name="pic3">Buddha Statue</string>
+    <string name="pic4">Windmills</string>
+    <string name="pic5">Jellyfish</string>
+    <string name="artist_name_1">ZaNuDa</string>
+    <string name="artist_name_2">jamiebramm</string>
+    <string name="artist_name_3">bredmaker</string>
+    <string name="artist_name_4">klsa12</string>
+    <string name="artist_name_5">rodstorm</string>
+    <string name="next_btn_des">Next image</string>
+    <string name="prev_btn_des">Previous iamge</string>
+</resources>
