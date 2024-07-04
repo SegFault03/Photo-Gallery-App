@@ -71,7 +71,7 @@ jobs:
       with:
         files: app-debug.apk
         tag_name: v${{ github.sha }}
-        name: "${{ env.PROJECT_NAME }} ${env.PROJECT_VERSION}"
+        name: "${{ env.PROJECT_NAME }} ${{ env.PROJECT_VERSION }}"
         draft: false
         prerelease: false
       env:
