@@ -45,26 +45,27 @@ jobs:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Download APK from build
-      uses: actions/download-artifact@v3
-      with:
-        name: app-debug
-    
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: app-debug.apk
-        tag_name: ${{ github.ref }}-${{ github.sha }}
-        name: Release ${{ github.ref }}-${{ github.sha }}
-        draft: false
-        prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+release:
+  needs: build
+  runs-on: ubuntu-latest
+  if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  steps:
+  - uses: actions/checkout@v3
+  
+  - name: Download APK from build
+    uses: actions/download-artifact@v3
+    with:
+      name: app-debug
+  
+  - name: Create Release
+    id: create_release
+    uses: softprops/action-gh-release@v1
+    with:
+      files: app-debug.apk
+      tag_name: v${{ github.sha }}  # Use commit SHA as tag name
+      name: Release ${{ github.sha }}  # Use commit SHA for release name
+      draft: false
+      prerelease: false
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
