@@ -57,13 +57,21 @@ jobs:
       with:
         name: app-debug
     
+    - name: Extract Project Name and Version
+      id: extract_info
+      run: |
+        projectName=$(grep "^rootProject.name" settings.gradle.kts | cut -d '"' -f 2)
+        projectVersion=$(grep "^version" build.gradle.kts | cut -d '"' -f 2)
+        echo "PROJECT_NAME=${projectName}" >> $GITHUB_ENV
+        echo "PROJECT_VERSION=${projectVersion}" >> $GITHUB_ENV
+
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
         files: app-debug.apk
         tag_name: v${{ github.sha }}
-        name: Release ${{ github.sha }}
+        name: "${{ env.PROJECT_NAME }} ${env.PROJECT_VERSION}"
         draft: false
         prerelease: false
       env:
